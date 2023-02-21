@@ -1,4 +1,8 @@
 local info = new('info')
+local guiGetScreenSize = guiGetScreenSize
+local dxDrawText = dxDrawText
+local dxGetTextWidth = dxGetTextWidth
+local tocolor = tocolor
 
 function info.prototype.____constructor(self)
     self._function = {}

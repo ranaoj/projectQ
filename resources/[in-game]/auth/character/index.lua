@@ -1,4 +1,19 @@
 local character = new('character')
+local tocolor = tocolor
+local dxDrawImage = dxDrawImage
+local dxDrawRectangle = dxDrawRectangle
+local dxDrawText = dxDrawText
+local getTickCount = getTickCount
+local getCursorPosition = getCursorPosition
+local guiGetScreenSize = guiGetScreenSize
+local getKeyState = getKeyState
+local localPlayer = localPlayer
+local root = root
+local addEvent = addEvent
+local addEventHandler = addEventHandler
+local triggerServerEvent = triggerServerEvent
+local dxGetTextWidth = dxGetTextWidth
+local ipairs = ipairs
 
 function character.prototype.____constructor(self)
     self._function = {}

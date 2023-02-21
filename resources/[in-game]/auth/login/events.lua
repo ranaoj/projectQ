@@ -1,4 +1,9 @@
 setGameType('Roleplay')
+local exports = exports
+local triggerClientEvent = triggerClientEvent
+local addEvent = addEvent
+local addEventHandler = addEventHandler
+local ipairs = ipairs
 local mysql = exports.mysql
 local objects = {}
 local timers = {}

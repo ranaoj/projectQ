@@ -1,4 +1,17 @@
 local login = new('login')
+local addEvent = addEvent
+local addEventHandler = addEventHandler
+local dxDrawImage = dxDrawImage
+local dxDrawRectangle = dxDrawRectangle
+local dxDrawText = dxDrawText
+local dxGetTextWidth = dxGetTextWidth
+local getTickCount = getTickCount
+local getKeyState = getKeyState
+local tocolor = tocolor
+local triggerServerEvent = triggerServerEvent
+local guiGetScreenSize = guiGetScreenSize
+local root = root
+local localPlayer = localPlayer
 
 function login.prototype.____constructor(self)
     self._function = {}

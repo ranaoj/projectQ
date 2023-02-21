@@ -1,3 +1,8 @@
+local exports = exports
+local addEvent = addEvent
+local addEventHandler = addEventHandler
+local tonumber = tonumber
+local triggerClientEvent = triggerClientEvent
 local mysql = exports.mysql
 
 addEvent('auth.spawn', true)
