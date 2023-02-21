@@ -194,7 +194,7 @@ function character.prototype.display(self)
                     dxDrawRectangle(self.x-200-10+150,self.screen.y-self.h-10,self.w/2,self.h,tocolor(15,15,15,165))
                 end
             end
-            dxDrawText(''..self.age..'yaşında',self.x-200-10+150+8,self.screen.y-self.h-10+5,nil,nil,tocolor(225,225,225,200),1,self.bold)
+            dxDrawText(''..self.age..' yaşında',self.x-200-10+150+8,self.screen.y-self.h-10+5,nil,nil,tocolor(225,225,225,200),1,self.bold)
             if self.selected == 3 then
                 dxDrawRectangle(self.x-200-10+270,self.screen.y-self.h-10,self.w/2,self.h,tocolor(15,15,15,235))
                 self.textSize = dxGetTextWidth(self.height,1,self.bold)
@@ -214,7 +214,7 @@ function character.prototype.display(self)
                     dxDrawRectangle(self.x-200-10+270,self.screen.y-self.h-10,self.w/2,self.h,tocolor(15,15,15,165))
                 end
             end
-            dxDrawText(''..self.height..'cm',self.x-200-10+270+15,self.screen.y-self.h-10+5,nil,nil,tocolor(225,225,225,200),1,self.bold)
+            dxDrawText(''..self.height..' cm',self.x-200-10+270+15,self.screen.y-self.h-10+5,nil,nil,tocolor(225,225,225,200),1,self.bold)
             if self.selected == 4 then
                 dxDrawRectangle(self.x-200-10+390,self.screen.y-self.h-10,self.w/2,self.h,tocolor(15,15,15,235))
                 self.textSize = dxGetTextWidth(self.weight,1,self.bold)
@@ -234,7 +234,7 @@ function character.prototype.display(self)
                     dxDrawRectangle(self.x-200-10+390,self.screen.y-self.h-10,self.w/2,self.h,tocolor(15,15,15,165))
                 end
             end
-            dxDrawText(''..self.weight..'kg',self.x-200-10+390+15,self.screen.y-self.h-10+5,nil,nil,tocolor(225,225,225,200),1,self.bold)
+            dxDrawText(''..self.weight..' kg',self.x-200-10+390+15,self.screen.y-self.h-10+5,nil,nil,tocolor(225,225,225,200),1,self.bold)
             self.screen = Vector2(guiGetScreenSize())
             if self:isInBox(0,0,150,self.screen.y) then
                 dxDrawRectangle(0,0,150,self.screen.y,tocolor(0,0,0,175))
