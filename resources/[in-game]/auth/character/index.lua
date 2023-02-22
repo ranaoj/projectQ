@@ -34,7 +34,6 @@ function character.prototype.____constructor(self)
 end
 
 function character.prototype.display(self)
-    self.screen = Vector2(guiGetScreenSize())
     self.load = self.load + 5
     if self.load >= 1000 then
         dxDrawRectangle(0,0,self.screen.x,self.screen.y,tocolor(25,25,25,145))
@@ -122,32 +121,31 @@ function character.prototype.display(self)
                 end
             end
         elseif self.page == 2 then
-            self.screen.y = self.screen.y - 75
-            dxDrawText('yeni karakterini kişiselleştir,',self.x,self.screen.y-self.h-35-100,nil,nil,tocolor(225,225,225,195),0.8,self.bold2)
+            dxDrawText('yeni karakterini kişiselleştir,',self.x,self.screen.y-25-self.h-35-100,nil,nil,tocolor(225,225,225,195),0.8,self.bold2)
             if self.gender == 1 then
-                dxDrawImage(self.x+50,self.screen.y-self.h-35-65,40,40,'assets/images/male.png',0,0,0,tocolor(255,255,255,125))
+                dxDrawImage(self.x+50,self.screen.y-25-self.h-35-65,40,40,'assets/images/male.png',0,0,0,tocolor(255,255,255,125))
             else
-                if self:isInBox(self.x+50,self.screen.y-self.h-35-65,40,40) then
-                    dxDrawImage(self.x+50,self.screen.y-self.h-35-65,40,40,'assets/images/male.png',0,0,0,tocolor(255,255,255,125))
+                if self:isInBox(self.x+50,self.screen.y-25-self.h-35-65,40,40) then
+                    dxDrawImage(self.x+50,self.screen.y-25-self.h-35-65,40,40,'assets/images/male.png',0,0,0,tocolor(255,255,255,125))
                     if getKeyState('mouse1') and self.click+400 <= getTickCount() then
                         self.click = getTickCount()
                         self.gender = 1
                     end
                 else
-                    dxDrawImage(self.x+50,self.screen.y-self.h-35-65,40,40,'assets/images/male.png')
+                    dxDrawImage(self.x+50,self.screen.y-25-self.h-35-65,40,40,'assets/images/male.png')
                 end
             end
             if self.gender == 2 then
-                dxDrawImage(self.x+110,self.screen.y-self.h-35-65,40,40,'assets/images/female.png',0,0,0,tocolor(255,255,255,125))
+                dxDrawImage(self.x+110,self.screen.y-25-self.h-35-65,40,40,'assets/images/female.png',0,0,0,tocolor(255,255,255,125))
             else
-                if self:isInBox(self.x+110,self.screen.y-self.h-35-65,40,40) then
-                    dxDrawImage(self.x+110,self.screen.y-self.h-35-65,40,40,'assets/images/female.png',0,0,0,tocolor(255,255,255,125))
+                if self:isInBox(self.x+110,self.screen.y-25-self.h-35-65,40,40) then
+                    dxDrawImage(self.x+110,self.screen.y-25-self.h-35-65,40,40,'assets/images/female.png',0,0,0,tocolor(255,255,255,125))
                     if getKeyState('mouse1') and self.click+400 <= getTickCount() then
                         self.click = getTickCount()
                         self.gender = 2
                     end
                 else
-                    dxDrawImage(self.x+110,self.screen.y-self.h-35-65,40,40,'assets/images/female.png')
+                    dxDrawImage(self.x+110,self.screen.y-25-self.h-35-65,40,40,'assets/images/female.png')
                 end
             end
             if self.gender == 1 then
@@ -156,11 +154,11 @@ function character.prototype.display(self)
                 self.ped.model = 193
             end
             if self.selected == 1 then
-                dxDrawRectangle(self.x,self.screen.y-self.h-35-10,self.w,self.h,tocolor(15,15,15,245))
+                dxDrawRectangle(self.x,self.screen.y-25-self.h-35-10,self.w,self.h,tocolor(15,15,15,245))
                 self.textSize = dxGetTextWidth(self.name,1,self.bold)
-                dxDrawText('l',self.x+5+(1*self.textSize),self.screen.y-self.h-35-10+5,nil,nil,tocolor(195,195,195,self.textAlpha),1,self.bold)
+                dxDrawText('l',self.x+5+(1*self.textSize),self.screen.y-25-self.h-35-10+5,nil,nil,tocolor(195,195,195,self.textAlpha),1,self.bold)
             else
-                if self:isInBox(self.x,self.screen.y-self.h-35-10,self.w,self.h) then
+                if self:isInBox(self.x,self.screen.y-25-self.h-35-10,self.w,self.h) then
                     if getKeyState('mouse1') and self.click+400 <= getTickCount() then
                         self.click = getTickCount()
                         self.selected = 1
@@ -169,19 +167,19 @@ function character.prototype.display(self)
                             self.charName = string.len(self.name)+1
                         end
                     end
-                    dxDrawRectangle(self.x,self.screen.y-self.h-35-10,self.w,self.h,tocolor(15,15,15,245))
+                    dxDrawRectangle(self.x,self.screen.y-25-self.h-35-10,self.w,self.h,tocolor(15,15,15,245))
                 else
-                    dxDrawRectangle(self.x,self.screen.y-self.h-35-10,self.w,self.h,tocolor(15,15,15,165))
+                    dxDrawRectangle(self.x,self.screen.y-25-self.h-35-10,self.w,self.h,tocolor(15,15,15,165))
                 end
             end
-            dxDrawText(self.name,self.x+5,self.screen.y-self.h-35-10+5,nil,nil,tocolor(225,225,225,200),1,self.bold)
+            dxDrawText(self.name,self.x+5,self.screen.y-25-self.h-35-10+5,nil,nil,tocolor(225,225,225,200),1,self.bold)
             if self.selected == 2 then
-                dxDrawRectangle(self.x-200-10+150,self.screen.y-self.h-10,self.w/2,self.h,tocolor(15,15,15,245))
+                dxDrawRectangle(self.x-200-10+150,self.screen.y-25-self.h-10,self.w/2,self.h,tocolor(15,15,15,245))
                 self.textSize = dxGetTextWidth(self.age,1,self.bold)
-                dxDrawText('l',self.x-200-10+150+8+(1*self.textSize),self.screen.y-self.h-10+5,nil,nil,tocolor(195,195,195,self.textAlpha),1,self.bold)
+                dxDrawText('l',self.x-200-10+150+8+(1*self.textSize),self.screen.y-25-self.h-10+5,nil,nil,tocolor(195,195,195,self.textAlpha),1,self.bold)
             else
-                if self:isInBox(self.x-200-10+150,self.screen.y-self.h-10,self.w/2,self.h) then
-                    dxDrawRectangle(self.x-200-10+150,self.screen.y-self.h-10,self.w/2,self.h,tocolor(15,15,15,245))
+                if self:isInBox(self.x-200-10+150,self.screen.y-25-self.h-10,self.w/2,self.h) then
+                    dxDrawRectangle(self.x-200-10+150,self.screen.y-25-self.h-10,self.w/2,self.h,tocolor(15,15,15,245))
                     if getKeyState('mouse1') and self.click+400 <= getTickCount() then
                         self.click = getTickCount()
                         self.selected = 2
@@ -191,17 +189,17 @@ function character.prototype.display(self)
                         end
                     end
                 else
-                    dxDrawRectangle(self.x-200-10+150,self.screen.y-self.h-10,self.w/2,self.h,tocolor(15,15,15,165))
+                    dxDrawRectangle(self.x-200-10+150,self.screen.y-25-self.h-10,self.w/2,self.h,tocolor(15,15,15,165))
                 end
             end
-            dxDrawText(''..self.age..' yaşında',self.x-200-10+150+8,self.screen.y-self.h-10+5,nil,nil,tocolor(225,225,225,200),1,self.bold)
+            dxDrawText(''..self.age..' yaşında',self.x-200-10+150+8,self.screen.y-25-self.h-10+5,nil,nil,tocolor(225,225,225,200),1,self.bold)
             if self.selected == 3 then
-                dxDrawRectangle(self.x-200-10+270,self.screen.y-self.h-10,self.w/2,self.h,tocolor(15,15,15,235))
+                dxDrawRectangle(self.x-200-10+270,self.screen.y-25-self.h-10,self.w/2,self.h,tocolor(15,15,15,235))
                 self.textSize = dxGetTextWidth(self.height,1,self.bold)
-                dxDrawText('l',self.x-200-10+270+15+(1*self.textSize),self.screen.y-self.h-10+5,nil,nil,tocolor(195,195,195,self.textAlpha),1,self.bold)
+                dxDrawText('l',self.x-200-10+270+15+(1*self.textSize),self.screen.y-25-self.h-10+5,nil,nil,tocolor(195,195,195,self.textAlpha),1,self.bold)
             else
-                if self:isInBox(self.x-200-10+270,self.screen.y-self.h-10,self.w/2,self.h) then
-                    dxDrawRectangle(self.x-200-10+270,self.screen.y-self.h-10,self.w/2,self.h,tocolor(15,15,15,235))
+                if self:isInBox(self.x-200-10+270,self.screen.y-25-self.h-10,self.w/2,self.h) then
+                    dxDrawRectangle(self.x-200-10+270,self.screen.y-25-self.h-10,self.w/2,self.h,tocolor(15,15,15,235))
                     if getKeyState('mouse1') and self.click+400 <= getTickCount() then
                         self.click = getTickCount()
                         self.selected = 3
@@ -211,17 +209,17 @@ function character.prototype.display(self)
                         end
                     end
                 else
-                    dxDrawRectangle(self.x-200-10+270,self.screen.y-self.h-10,self.w/2,self.h,tocolor(15,15,15,165))
+                    dxDrawRectangle(self.x-200-10+270,self.screen.y-25-self.h-10,self.w/2,self.h,tocolor(15,15,15,165))
                 end
             end
-            dxDrawText(''..self.height..' cm',self.x-200-10+270+15,self.screen.y-self.h-10+5,nil,nil,tocolor(225,225,225,200),1,self.bold)
+            dxDrawText(''..self.height..' cm',self.x-200-10+270+15,self.screen.y-25-self.h-10+5,nil,nil,tocolor(225,225,225,200),1,self.bold)
             if self.selected == 4 then
-                dxDrawRectangle(self.x-200-10+390,self.screen.y-self.h-10,self.w/2,self.h,tocolor(15,15,15,235))
+                dxDrawRectangle(self.x-200-10+390,self.screen.y-25-self.h-10,self.w/2,self.h,tocolor(15,15,15,235))
                 self.textSize = dxGetTextWidth(self.weight,1,self.bold)
-                dxDrawText('l',self.x-200-10+390+15+(1*self.textSize),self.screen.y-self.h-10+5,nil,nil,tocolor(195,195,195,self.textAlpha),1,self.bold)
+                dxDrawText('l',self.x-200-10+390+15+(1*self.textSize),self.screen.y-25-self.h-10+5,nil,nil,tocolor(195,195,195,self.textAlpha),1,self.bold)
             else
-                if self:isInBox(self.x-200-10+390,self.screen.y-self.h-10,self.w/2,self.h) then
-                    dxDrawRectangle(self.x-200-10+390,self.screen.y-self.h-10,self.w/2,self.h,tocolor(15,15,15,235))
+                if self:isInBox(self.x-200-10+390,self.screen.y-25-self.h-10,self.w/2,self.h) then
+                    dxDrawRectangle(self.x-200-10+390,self.screen.y-25-self.h-10,self.w/2,self.h,tocolor(15,15,15,235))
                     if getKeyState('mouse1') and self.click+400 <= getTickCount() then
                         self.click = getTickCount()
                         self.selected = 4
@@ -231,11 +229,10 @@ function character.prototype.display(self)
                         end
                     end
                 else
-                    dxDrawRectangle(self.x-200-10+390,self.screen.y-self.h-10,self.w/2,self.h,tocolor(15,15,15,165))
+                    dxDrawRectangle(self.x-200-10+390,self.screen.y-25-self.h-10,self.w/2,self.h,tocolor(15,15,15,165))
                 end
             end
-            dxDrawText(''..self.weight..' kg',self.x-200-10+390+15,self.screen.y-self.h-10+5,nil,nil,tocolor(225,225,225,200),1,self.bold)
-            self.screen = Vector2(guiGetScreenSize())
+            dxDrawText(''..self.weight..' kg',self.x-200-10+390+15,self.screen.y-25-self.h-10+5,nil,nil,tocolor(225,225,225,200),1,self.bold)
             if self:isInBox(0,0,150,self.screen.y) then
                 dxDrawRectangle(0,0,150,self.screen.y,tocolor(0,0,0,175))
                 dxDrawText('↺',45,self.screen.y/2-50,nil,nil,tocolor(195,195,195,155),1,self.icon)
