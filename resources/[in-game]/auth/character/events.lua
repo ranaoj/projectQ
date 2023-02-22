@@ -5,6 +5,13 @@ local tonumber = tonumber
 local triggerClientEvent = triggerClientEvent
 local mysql = exports.mysql
 
+-- karakter spawn olduğundan tetiklenir.
+addEvent('onCharacterSpawn', true)
+--Source:
+    -- spawnlanan oyuncu.
+--Parametreler:
+    -- table karakter bilgileri
+
 addEvent('auth.spawn', true)
 addEventHandler('auth.spawn', root, function(dbid)
     if source then
@@ -22,12 +29,15 @@ addEventHandler('auth.spawn', root, function(dbid)
                             player.gravity = 0.008
                             player.model = tonumber(row.model)
                             player.name = tostring(row.name)
-                            player:setData('age', tonumber(row.age))
-                            player:setData('height', tonumber(row.height))
-                            player:setData('weight', tonumber(row.weight))
-                            player:setData('gender', tonumber(row.gender))
+                            player:setData("characterDatas",{
+                                age=tonumber(row.age),
+                                height=tonumber(row.height),
+                                weight=tonumber(row.weight),
+                                gender=tonumber(row.gender),
+                            })
                             player:setData('money', tonumber(row.money))
                         end
+                        triggerEvent("onCharacterSpawn",player,res[1])
                     end
                 end,
             {source}, mysql:getConn(), "SELECT * FROM characters WHERE id = ?", tonumber(dbid))
@@ -78,12 +88,7 @@ addEventHandler('auth.create', root, function(name,age,height,weight,gender,mode
                         dbQuery(
                             function(qh,player)
                                 local res, rows, err = dbPoll(qh, 0)
-                                local count = 0
-                                if rows > 0 then
-                                    for index, row in ipairs(res) do
-                                        count = count + 1
-                                    end
-                                end
+                                local count = #res
                                 if count >= player:getData('account.limit') then
                                     triggerClientEvent(player,'auth.info',player,'daha fazla karakter oluşturamazsın')
                                 else
@@ -96,10 +101,10 @@ addEventHandler('auth.create', root, function(name,age,height,weight,gender,mode
                                     end
                                 end
                             end,
-                        {player}, mysql:getConn(), "SELECT * FROM characters WHERE account = ?", player:getData('account.id'))
+                        {player}, mysql:getConn(), "SELECT id FROM characters WHERE account = ?", player:getData('account.id'))
                     end
                 end,
-            {source}, mysql:getConn(), "SELECT * FROM characters WHERE name = ?", charname)
+            {source}, mysql:getConn(), "SELECT id FROM characters WHERE name = ?", charname)
         else
             triggerClientEvent(source,'auth.info',source,'lütfen boşlukları düzgün bir şekilde doldurun')
         end
