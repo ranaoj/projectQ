@@ -96,6 +96,7 @@ addEventHandler('auth.create', root, function(name,age,height,weight,gender,mode
                                     if (successName) then
                                         dbExec(mysql:getConn(), "INSERT INTO characters SET account='"..(player:getData('account.id')).."', name='"..(charname).."', age='"..(tonumber(age)).."', height='"..(tonumber(height)).."', weight='"..(tonumber(weight)).."', gender='"..(tonumber(gender)).."', model='"..(tonumber(model)).."'")
                                         triggerClientEvent(player,'auth.create.success',player)
+                                        triggerClientEvent(player, 'auth.info', player, 'karakterinizi oluşturdunuz, '..charname)
                                     else
                                         triggerClientEvent(player, 'auth.info', player, 'lütfen başka bir karakter ismi belirleyin')
                                     end
