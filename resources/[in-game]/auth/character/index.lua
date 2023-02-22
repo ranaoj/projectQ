@@ -23,10 +23,10 @@ function character.prototype.____constructor(self)
     self._function.write = function(...) self:write(self,...) end
     self._function.renderText = function(...) self:renderText(self) end
     self._function.success = function(...) self:success(self) end
-    self.bold = DxFont('assets/fonts/RobotoB.ttf', 10)
-    self.bold2 = DxFont('assets/fonts/RobotoB.ttf', 14)
-    self.icon = DxFont('assets/fonts/RobotoB.ttf', 50)
-    self.regular = DxFont('assets/fonts/Roboto.ttf', 10)
+    self.bold = exports.fonts:get('RobotoB', 10)
+    self.bold2 = exports.fonts:get('RobotoB', 14)
+    self.icon = exports.fonts:get('RobotoB', 50)
+    self.regular = exports.fonts:get('Roboto', 10)
     self.screen = Vector2(guiGetScreenSize())
     self.w, self.h = 200, 30
     self.x, self.y = self.screen.x/2-self.w/2, self.screen.y/2-self.h/2

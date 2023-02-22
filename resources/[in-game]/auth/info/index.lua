@@ -9,8 +9,7 @@ function info.prototype.____constructor(self)
     self._function.get = function(...) self:get(self,...) end
     self._function.display = function(...) self:display(self) end
     self._function.stop = function(...) self:stop(self) end
-    self.bold = DxFont('assets/fonts/RobotoB.ttf', 10)
-    self.regular = DxFont('assets/fonts/Roboto.ttf', 10)
+    self.bold = exports.fonts:get('RobotoB', 10)
     self.screen = Vector2(guiGetScreenSize())
     self.render = nil
     addEvent('auth.info', true)
