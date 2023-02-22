@@ -8,5 +8,6 @@
     <file src='assets/Roboto.ttf'/>
 
     <oop>true</oop>
+    <download_priority_group>10</download_priority_group>
     <export function='get' type='client'/>
 </meta>
