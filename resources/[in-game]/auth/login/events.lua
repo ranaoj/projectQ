@@ -23,22 +23,22 @@ local login = function(player,username)
                             logined:setData('account.limit', tonumber(row.limit))
                         end
                     end
+                    triggerClientEvent(logined,'auth.logined',logined)
                 end,
             {player}, mysql:getConn(), "SELECT * FROM accounts WHERE name = ?", username)
-            triggerClientEvent(player,'auth.logined',player)
         end
     end
 end
 
 addEventHandler('onPlayerChangeNick', root, function(oldNick,newNick)
-    if source:getData('name.change') then else
+    if not source:getData('name.change') then 
         cancelEvent()
         source.name = tostring(oldNick)
     end
 end)
 
 addEventHandler('onPlayerCommand', root, function(command)
-    if source:getData('online') then else return false end
+    if not source:getData('online') then cancelEvent() end
 end)
 
 addEvent('auth.ped', true)
@@ -91,7 +91,7 @@ addEventHandler('auth.login', root, function(username,password)
                         triggerClientEvent(player,'auth.info',player,'böyle bir hesap bulunamadı, ('..username..')')
                     end
                 end,
-            {source}, mysql:getConn(), "SELECT * FROM accounts WHERE name = ?", username)
+            {source}, mysql:getConn(), "SELECT password,name FROM accounts WHERE name = ?", username)
         else
             triggerClientEvent(source,'auth.info',source,'bir sorun oluştu, lütfen tekrar deneyiniz! (001)')
         end
@@ -125,10 +125,10 @@ addEventHandler('auth.register', root, function(username,password,email)
                                     triggerClientEvent(player,'auth.info',player,'başarıyla kayıt oldunuz, ('..username..')')
                                 end
                             end,
-                        {player}, mysql:getConn(), "SELECT * FROM accounts WHERE name = ?", username)
+                        {player}, mysql:getConn(), "SELECT name FROM accounts WHERE name = ?", username)
                     end
                 end,
-            {source}, mysql:getConn(), "SELECT * FROM accounts WHERE serial = ?", source.serial)
+            {source}, mysql:getConn(), "SELECT name FROM accounts WHERE serial = ?", source.serial)
         else
             triggerClientEvent(source,'auth.info',source,'bir sorun oluştu, lütfen tekrar deneyiniz! (002)')
         end
